@@ -1,0 +1,13 @@
+depsversion = "0.0.0"
+
+name = "piot/basal-c"
+version = "0.0.0"
+
+[[dependencies]]
+name = 'piot/tiny-libc'
+version = "*"
+
+
+[[dependencies]]
+name = 'piot/clog'
+version = "*"
