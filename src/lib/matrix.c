@@ -3,15 +3,15 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 #include <basal/math.h>
-#include <basal/basal_matrix.h>
-#include <basal/basal_quaternion.h>
-#include <basal/basal_rect2.h>
-#include <basal/basal_vector3.h>
+#include <basal/matrix.h>
+#include <basal/quaternion.h>
+#include <basal/rect2.h>
+#include <basal/vector3.h>
 #include <tiny-libc/tiny_libc.h>
 #include <stdbool.h>
 #include <clog/clog.h>
 
-void bl_matrix_init(bl_matrix* self)
+void blMatrixInit(BlMatrix* self)
 {
     tc_mem_clear_type_n(self->m, 16);
     float* m = self->m;
@@ -22,18 +22,18 @@ void bl_matrix_init(bl_matrix* self)
     m[3 * 4 + 3] = 1.0f;
 }
 
-void verifyMatrix(const bl_matrix* matrix)
+void blMatrixVerify(const BlMatrix* matrix)
 {
     for (size_t i = 0; i < 16; i++) {
         float v = matrix->m[i];
         float abs = fabsf(v);
         if (abs > 30000.0f) {
-            CLOG_ERROR("bl_matrix has too big values!")
+            CLOG_ERROR("BlMatrix has too big values!")
         }
     }
 }
 
-void bl_matrix_init_perspective(bl_matrix* self, float _fovy, float _aspect, float near_z,
+void blMatrixInitPerspective(BlMatrix* self, float _fovy, float _aspect, float near_z,
                                 float far_z)
 {
     const float height = 1.0f / blTan(_fovy * 0.5f);
@@ -53,7 +53,7 @@ void bl_matrix_init_perspective(bl_matrix* self, float _fovy, float _aspect, flo
     _result[3 * 4 + 2] = bb;
 }
 
-void bl_matrix_init_ortho(bl_matrix* self, struct bl_rect* rect, float near_z, float far_z)
+void blMatrixInitOrtho(BlMatrix* self, struct BlRect2* rect, float near_z, float far_z)
 {
     float* _result = self->m;
 
@@ -81,7 +81,7 @@ void bl_matrix_init_ortho(bl_matrix* self, struct bl_rect* rect, float near_z, f
     _result[3 * 4 + 2] = -fan / fsn;
 }
 
-void bl_matrix_init_ortho_lh(bl_matrix* self, struct bl_rect* rect, float near_z, float far_z)
+void blMatrixInitOrthoLh(BlMatrix* self, struct BlRect2* rect, float near_z, float far_z)
 {
     float* _result = self->m;
 
@@ -108,7 +108,7 @@ void bl_matrix_init_ortho_lh(bl_matrix* self, struct bl_rect* rect, float near_z
     _result[3 * 4 + 2] = near_z / nsf;
 }
 
-void bl_matrix_invert(bl_matrix* destination, const bl_matrix* source)
+void blMatrixInvert(BlMatrix* destination, const BlMatrix* source)
 {
     const float* _a = source->m;
     float* _result = destination->m;
@@ -160,15 +160,15 @@ void bl_matrix_invert(bl_matrix* destination, const bl_matrix* source)
     _result[15] = +(xx * (yy * zz - zy * yz) - xy * (yx * zz - zx * yz) + xz * (yx * zy - zx * yy)) * invDet;
 }
 
-void bl_matrix_init_vector(bl_matrix* self, const bl_vector3* position)
+void blMatrixInitVector(BlMatrix* self, const BlVector3* position)
 {
-    bl_matrix_init(self);
+    blMatrixInit(self);
     self->m[12] = position->x;
     self->m[13] = position->y;
     self->m[14] = position->z;
 }
 
-static void bl_matrix_set_quaternion(bl_matrix* self, const bl_quaternion* quaternion)
+static void blMatrixSetQuaternion(BlMatrix* self, const BlQuaternion* quaternion)
 {
     const float X = quaternion->v.x;
     const float Y = quaternion->v.y;
@@ -204,13 +204,13 @@ static void bl_matrix_set_quaternion(bl_matrix* self, const bl_quaternion* quate
     d[15] = 1.0f;
 }
 
-void bl_matrix_init_vector_quaternion(bl_matrix* self, const bl_vector3* position, const bl_quaternion* rotation)
+void blMatrixInitVectorQuaternion(BlMatrix* self, const BlVector3* position, const BlQuaternion* rotation)
 {
-    bl_matrix_init_vector(self, position);
-    bl_matrix_set_quaternion(self, rotation);
+    blMatrixInitVector(self, position);
+    blMatrixSetQuaternion(self, rotation);
 }
 
-void bl_matrix_multiply(bl_matrix* destination, const bl_matrix* b_matrix, const bl_matrix* a_matrix)
+void blMatrixMultiply(BlMatrix* destination, const BlMatrix* b_matrix, const BlMatrix* a_matrix)
 {
     const float* a = a_matrix->m;
     const float* b = b_matrix->m;
@@ -231,33 +231,28 @@ void bl_matrix_multiply(bl_matrix* destination, const bl_matrix* b_matrix, const
     tc_memcpy_type(float, destination->m, t, 16);
 }
 
-void bl_matrix_get_translate(const bl_matrix* self, struct bl_vector3* position)
+void blMatrixGetTranslate(const BlMatrix* self, struct BlVector3* position)
 {
     position->x = self->m[12];
     position->y = self->m[13];
     position->z = self->m[14];
 }
 
-void bl_matrix_set_translate(bl_matrix* self, const struct bl_vector3 pos)
+void blMatrixSetTranslate(BlMatrix* self, const struct BlVector3 pos)
 {
     self->m[12] = pos.x;
     self->m[13] = pos.y;
     self->m[14] = pos.z;
 }
 
-void bl_matrix_set_scale(bl_matrix* self, const struct bl_vector3 scale)
+void blMatrixSetScale(BlMatrix* self, const struct BlVector3 scale)
 {
     self->m[0] = scale.x;
     self->m[5] = scale.y;
     self->m[10] = scale.z;
 }
 
-void bl_matrix_copy(bl_matrix* destination, const bl_matrix* source)
-{
-    *destination = *source;
-}
-
-const float* bl_matrix_raw(const bl_matrix* self)
+const float* blMatrixRaw(const BlMatrix* self)
 {
     return self->m;
 }

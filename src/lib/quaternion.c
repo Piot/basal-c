@@ -3,9 +3,9 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 #include <basal/math.h>
-#include <basal/basal_quaternion.h>
+#include <basal/quaternion.h>
 
-static void bl_quaternion_normalize(bl_quaternion* q)
+static void blQuaternionNormalize(BlQuaternion* q)
 {
     float scale = blSqrt(q->v.x * q->v.x + q->v.y * q->v.y + q->v.z * q->v.z + q->w * q->w);
 
@@ -18,7 +18,7 @@ static void bl_quaternion_normalize(bl_quaternion* q)
     q->w /= scale;
 }
 
-void bl_quaternion_from_euler(bl_quaternion* q, float z, float x, float y)
+void blQuaternionFromEuler(BlQuaternion* q, float z, float x, float y)
 {
     float half_x = x / 2.0f;
     float half_y = y / 2.0f;
@@ -37,10 +37,10 @@ void bl_quaternion_from_euler(bl_quaternion* q, float z, float x, float y)
     q->v.y = sin_x * cos_y * cos_z + cos_x * sin_y * sin_z;
     q->v.z = cos_x * sin_y * cos_z - sin_x * cos_y * sin_z;
 
-    bl_quaternion_normalize(q);
+    blQuaternionNormalize(q);
 }
 
-void bl_quaternion_to_euler(bl_quaternion* q, float* roll, float* pitch, float* yaw)
+void blQuaternionToEuler(BlQuaternion* q, float* roll, float* pitch, float* yaw)
 {
     float sqz = q->v.z * q->v.z;
     float sqw = q->w * q->w;

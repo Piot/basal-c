@@ -2,8 +2,8 @@
  *  Copyright (c) Peter Bjorklund. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-#ifndef bl_rect_h
-#define bl_rect_h
+#ifndef BL_RECT_H
+#define BL_RECT_H
 
 #include <stdbool.h>
 #include <basal/vector2.h>

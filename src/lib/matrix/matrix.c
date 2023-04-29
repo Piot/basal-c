@@ -2,18 +2,18 @@
  *  Copyright (c) Peter Bjorklund. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-#include <basal/basal_matrix.h>
+#include <basal/matrix.h>
 #include <clog/clog.h>
 #include <tiny-libc/tiny_libc.h>
 
-void bl_matrix_debug(const bl_matrix* self, const char* debug_string)
+void blMatrixDebug(const BlMatrix* self, const char* debug_string)
 {
 #if defined CONFIGURATION_DEBUG
     CLOG_INFO("matrix:'%s'", debug_string)
 #else
     (void) debug_string;
 #endif
-    const float* m = bl_matrix_raw(self);
+    const float* m = blMatrixRaw(self);
     for (int i = 0; i < 4; i++) {
         char line[128];
         line[0] = 0;

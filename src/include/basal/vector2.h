@@ -2,8 +2,8 @@
  *  Copyright (c) Peter Bjorklund. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-#ifndef blVector2h
-#define blVector2h
+#ifndef BL_VECTOR2_H
+#define BL_VECTOR2_H
 
 #include <stdbool.h>
 
@@ -29,6 +29,5 @@ BlVector2 blVector2FromAngle(float angle);
 float blVector2ToAngle(BlVector2 a);
 
 float blAngleMinimalDiff(float a, float b);
-
 
 #endif

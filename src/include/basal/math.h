@@ -5,11 +5,11 @@
 #ifndef BL_MATH_H
 #define BL_MATH_H
 
+#include <math.h>
+
 #define BL_PI_2 (1.570796f)
 #define BL_PI (3.141592f)
 #define BL_2PI (6.283185f)
-
-#include <math.h>
 
 #define blSqrt(f) sqrtf(f)
 #define blFabs(f) ((float) fabsf(f))
@@ -24,9 +24,6 @@
 
 #define blPow(a, b) pow((a), (b))
 
-#define blClampf(v, min, max) (min < max           \
-  ? (v < min ? min : v > max ? max : v) \
-  : (v < max ? max : v > min ? min : v) \
-)
+#define blClampf(v, min, max) (min < max ? (v < min ? min : v > max ? max : v) : (v < max ? max : v > min ? min : v))
 
 #endif

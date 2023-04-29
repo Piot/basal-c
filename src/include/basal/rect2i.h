@@ -5,15 +5,15 @@
 #ifndef bl_rect2i_h
 #define bl_rect2i_h
 
-#include <basal/basal_size2.h>
-#include <basal/basal_size2i.h>
+#include <basal/size2.h>
+#include <basal/size2i.h>
 #include <stdbool.h>
 
 #include <basal/vector2i.h>
 
 typedef struct bl_recti {
     bl_vector2i vector;
-    bl_size2i size;
+    BlSize2i size;
 } bl_recti;
 
 #endif

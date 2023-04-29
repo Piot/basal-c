@@ -2,23 +2,22 @@
  *  Copyright (c) Peter Bjorklund. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-#ifndef bl_transform_h
-#define bl_transform_h
+#ifndef BL_TRANSFORM_H
+#define BL_TRANSFORM_H
 
-#include <basal/basal_matrix.h>
+#include <basal/matrix.h>
 
-typedef struct bl_transform {
-    bl_matrix local_matrix;
-    bl_matrix world_matrix;
+typedef struct BlTransform {
+    BlMatrix local_matrix;
+    BlMatrix world_matrix;
 
-    struct bl_transform* parent;
-    struct bl_transform** children;
+    struct BlTransform* parent;
+    struct BlTransform** children;
     int max_children_count;
     int children_count;
-} bl_transform;
+} BlTransform;
 
-void bl_transform_init(bl_transform* self);
-
-void bl_transform_world_get_translate(bl_transform* self, struct bl_vector3* position);
+void blTransformInit(BlTransform* self);
+void blTransformWorldGetTranslate(const BlTransform* self, struct BlVector3* position);
 
 #endif

@@ -2,14 +2,14 @@
  *  Copyright (c) Peter Bjorklund. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-#include <basal/basal_matrix.h>
-#include <basal/basal_rect2.h>
-#include <basal/basal_rect_utils.h>
-#include <basal/basal_vector3.h>
+#include <basal/matrix.h>
+#include <basal/rect2.h>
+#include <basal/rect_utils.h>
+#include <basal/vector3.h>
 
-static void bl_vector3_multiply_matrix4(bl_vector3* result, const bl_vector3* vector, const bl_matrix* matrix)
+static void blVector3multiply_matrix4(BlVector3* result, const BlVector3* vector, const BlMatrix* matrix)
 {
-    bl_vector3 v;
+    BlVector3 v;
 
     v.x = vector->x * matrix->m[0] + vector->y * matrix->m[3] + vector->z * matrix->m[6] + matrix->m[12];
     v.y = vector->x * matrix->m[1] + vector->y * matrix->m[4] + vector->z * matrix->m[7] + matrix->m[13];
@@ -20,24 +20,24 @@ static void bl_vector3_multiply_matrix4(bl_vector3* result, const bl_vector3* ve
     result->z = v.z;
 }
 
-static void bl_vector3i_multiply_matrix4(bl_vector3i* result, const bl_vector3i* vector, const bl_matrix* matrix)
+static void bl_vector3i_multiply_matrix4(bl_vector3i* result, const bl_vector3i* vector, const BlMatrix* matrix)
 {
-    bl_vector3 source;
+    BlVector3 source;
 
     source.x = vector->x;
     source.y = vector->y;
     source.z = vector->z;
 
-    bl_vector3 result3;
+    BlVector3 result3;
 
-    bl_vector3_multiply_matrix4(&result3, &source, matrix);
+    blVector3multiply_matrix4(&result3, &source, matrix);
 
     result->x = result3.x;
     result->y = result3.y;
     result->z = result3.z;
 }
 
-static void bl_vector2i_multiply_matrix4(bl_vector2i* result, const bl_vector2i* vector, const bl_matrix* matrix)
+static void bl_vector2i_multiply_matrix4(bl_vector2i* result, const bl_vector2i* vector, const BlMatrix* matrix)
 {
     bl_vector3i source;
 
@@ -53,7 +53,7 @@ static void bl_vector2i_multiply_matrix4(bl_vector2i* result, const bl_vector2i*
     result->y = result3.y;
 }
 
-void bl_recti_multiply_matrix4(bl_recti* target, const bl_recti* source, const bl_matrix* matrix)
+void bl_recti_multiply_matrix4(bl_recti* target, const bl_recti* source, const BlMatrix* matrix)
 {
     bl_vector2i_multiply_matrix4(&target->vector, &source->vector, matrix);
 
@@ -61,11 +61,12 @@ void bl_recti_multiply_matrix4(bl_recti* target, const bl_recti* source, const b
     target->size.height = (source->size.height * matrix->m[5]);
 }
 
+/*
 static void bl_recti_flipx(bl_recti* target, const bl_recti* source)
 {
     target->vector.y = source->vector.y + source->size.height;
 }
-/*
+
 bool bl_recti_is_intersect(const bl_recti* a, bl_recti* b)
 {
     return !(a->vector.x > b->vector.x + b->size.width || a->vector.x + a->size.width <= b->vector.x ||

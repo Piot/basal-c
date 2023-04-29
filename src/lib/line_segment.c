@@ -3,8 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 #include "clog/clog.h"
-#include <basal/basal_line_segment.h>
-
+#include <basal/line_segment.h>
 
 BlVector2 blLineSegmentClosestPoint(const BlLineSegment segment, const BlVector2 query)
 {
@@ -58,8 +57,7 @@ BlCollision blLineSegmentCircleIntersect(const BlLineSegment segment, const BlCi
     if (result.depth != 0) {
         CLOG_VERBOSE("depth is set")
     }
-    result.normal = blVector2Scale(deltaCircleCenterAndClosestPoint,
-                                          1.0f / distanceBetweenCircleAndClosestPoint);
+    result.normal = blVector2Scale(deltaCircleCenterAndClosestPoint, 1.0f / distanceBetweenCircleAndClosestPoint);
     result.point = closestPoint;
 
     return result;

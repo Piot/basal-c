@@ -2,16 +2,16 @@
  *  Copyright (c) Peter Bjorklund. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-#ifndef bl_vector3_h
-#define bl_vector3_h
+#ifndef blVector3h
+#define blVector3h
 
 #include <stdbool.h>
 
-typedef struct bl_vector3 {
+typedef struct BlVector3 {
     float x;
     float y;
     float z;
-} bl_vector3;
+} BlVector3;
 
 typedef struct bl_vector3i {
     int x;
@@ -19,6 +19,6 @@ typedef struct bl_vector3i {
     int z;
 } bl_vector3i;
 
-bl_vector3 bl_vector3_make(float x, float y, float z);
+BlVector3 blVector3Make(float x, float y, float z);
 
 #endif

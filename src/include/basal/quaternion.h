@@ -2,15 +2,17 @@
  *  Copyright (c) Peter Bjorklund. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-#include <basal/basal_vector3.h>
+#ifndef BL_QUATERNION_H
+#define BL_QUATERNION_H
 
-bl_vector3 bl_vector3_make(float x, float y, float z)
-{
-    bl_vector3 point;
+#include <basal/vector3.h>
 
-    point.x = x;
-    point.y = y;
-    point.z = z;
+typedef struct BlQuaternion {
+    BlVector3 v;
+    float w;
+} BlQuaternion;
 
-    return point;
-}
+void blQuaternionFromEuler(BlQuaternion* q, float roll, float pitch, float yaw);
+void blQuaternionToEuler(BlQuaternion* q, float* roll, float* pitch, float* yaw);
+
+#endif

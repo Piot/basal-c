@@ -2,17 +2,17 @@
  *  Copyright (c) Peter Bjorklund. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-#ifndef bl_rect_utils_h
-#define bl_rect_utils_h
+#ifndef BL_RECT_UTILS_H
+#define BL_RECT_UTILS_H
 
 #include <stdbool.h>
 
 #include <basal/rect2i.h>
 #include <tiny-libc/tiny_libc.h>
 
-struct bl_matrix;
+struct BlMatrix;
 
-void bl_recti_multiply_matrix4(struct bl_recti* target, const struct bl_recti* source, const struct bl_matrix* matrix);
+void bl_recti_multiply_matrix4(struct bl_recti* target, const struct bl_recti* source, const struct BlMatrix* matrix);
 void bl_recti_penetration(const bl_recti* a, bl_recti* b, struct bl_vector2i* separationAxis);
 //void bl_recti_combine(bl_recti* result, const bl_recti* a, const bl_recti* b);
 

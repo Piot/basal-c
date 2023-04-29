@@ -2,12 +2,22 @@
  *  Copyright (c) Peter Bjorklund. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-#ifndef bl_size2i_h
-#define bl_size2i_h
+#ifndef BL_RECT2_H
+#define BL_RECT2_H
 
-typedef struct bl_size2i {
-    int width;
-    int height;
-} bl_size2i;
+#include <basal/size2.h>
+#include <basal/size2i.h>
+#include <stdbool.h>
+
+#include <basal/vector2.h>
+
+typedef struct BlRect2 {
+    BlVector2 vector;
+    BlSize2 size;
+} BlRect2;
+
+
+
+
 
 #endif

@@ -26,7 +26,6 @@ BlVector2 blVector2Add(BlVector2 a, BlVector2 b)
     return blVector2Make(a.x + b.x, a.y + b.y);
 }
 
-
 BlVector2 blVector2AddScale(BlVector2 a, BlVector2 b, float scale)
 {
     BlVector2 result;
@@ -37,15 +36,13 @@ BlVector2 blVector2AddScale(BlVector2 a, BlVector2 b, float scale)
     return result;
 }
 
-
-
 BlVector2 blVector2Zero(void)
 {
-      BlVector2 result;
-      result.x = 0;
-      result.y = 0;
+    BlVector2 result;
+    result.x = 0;
+    result.y = 0;
 
-      return result;
+    return result;
 }
 
 BlVector2 blVector2Sub(BlVector2 a, BlVector2 b)
@@ -65,7 +62,6 @@ float blVector2SquareLength(BlVector2 a)
 {
     return a.x * a.x + a.y * a.y;
 }
-
 
 BlVector2 blVector2Unit(BlVector2 a)
 {
