@@ -52,11 +52,6 @@ BlCollision blLineSegmentCircleIntersect(const BlLineSegment segment, const BlCi
 
     float distanceBetweenCircleAndClosestPoint = blVector2Length(deltaCircleCenterAndClosestPoint);
     result.depth = ((float) circle.radius) - distanceBetweenCircleAndClosestPoint;
-    CLOG_VERBOSE("depth is set radius:%f distance:%f depth:%f", circle.radius, distanceBetweenCircleAndClosestPoint,
-                 result.depth)
-    if (result.depth != 0) {
-        CLOG_VERBOSE("depth is set")
-    }
     result.normal = blVector2Scale(deltaCircleCenterAndClosestPoint, 1.0f / distanceBetweenCircleAndClosestPoint);
     result.point = closestPoint;
 
