@@ -13,6 +13,7 @@
 
 #define blSqrt(f) sqrtf(f)
 #define blFabs(f) ((float) fabsf(f))
+#define blFSign(f) ((f) < 0.f ? -1.f : (f) > 0.f ? 1.f : 0.f)
 #define blAcos(f) ((float) acosf(f))
 #define blSin(f) ((float) sinf(f))
 #define blCos(f) ((float) cosf(f))
