@@ -13,7 +13,7 @@
 struct BlMatrix;
 
 void bl_recti_multiply_matrix4(struct bl_recti* target, const struct bl_recti* source, const struct BlMatrix* matrix);
-void bl_recti_penetration(const bl_recti* a, bl_recti* b, struct bl_vector2i* separationAxis);
+void bl_recti_penetration(const bl_recti* a, bl_recti* b, struct BlVector2i * separationAxis);
 //void bl_recti_combine(bl_recti* result, const bl_recti* a, const bl_recti* b);
 
 static inline bool bl_recti_is_intersect(const bl_recti* r1, const bl_recti* r2)

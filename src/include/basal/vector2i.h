@@ -5,20 +5,19 @@
 #ifndef BL_VECTOR2I_H
 #define BL_VECTOR2I_H
 
-typedef struct bl_vector2i {
+typedef struct BlVector2i {
     int x;
     int y;
-} bl_vector2i;
+} BlVector2i;
 
-
-bl_vector2i bl_vector2i_subtract(bl_vector2i a, bl_vector2i b);
-int bl_vector2i_dot(const bl_vector2i a, const bl_vector2i b);
-bl_vector2i bl_vector2i_reflect(bl_vector2i incoming, bl_vector2i normal);
-bl_vector2i bl_vector2i_add_scale(bl_vector2i a, bl_vector2i b, int scale);
-bl_vector2i bl_vector2i_mul_scalar(bl_vector2i p, float scalar);
-float bl_vector2i_length(bl_vector2i a);
-bl_vector2i bl_vector2i_unit(bl_vector2i a);
-bl_vector2i bl_vector2i_add(bl_vector2i a, bl_vector2i b);
-int bl_vector2i_square_length(bl_vector2i a);
+BlVector2i blVector2iSub(BlVector2i a, BlVector2i b);
+int blVector2iDot(const BlVector2i a, const BlVector2i b);
+BlVector2i blVector2iReflect(BlVector2i incoming, BlVector2i normal);
+BlVector2i blVector2iAddScale(BlVector2i a, BlVector2i b, int scale);
+BlVector2i blVector2iScale(BlVector2i p, float scalar);
+BlVector2i blVector2iUnit(BlVector2i a);
+BlVector2i blVector2iAdd(BlVector2i a, BlVector2i b);
+float blVector2iLength(BlVector2i a);
+int blVector2iSquareLength(BlVector2i a);
 
 #endif

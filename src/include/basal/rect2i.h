@@ -12,7 +12,7 @@
 #include <basal/vector2i.h>
 
 typedef struct bl_recti {
-    bl_vector2i vector;
+    BlVector2i vector;
     BlSize2i size;
 } bl_recti;
 

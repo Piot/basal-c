@@ -37,7 +37,7 @@ static void bl_vector3i_multiply_matrix4(bl_vector3i* result, const bl_vector3i*
     result->z = result3.z;
 }
 
-static void bl_vector2i_multiply_matrix4(bl_vector2i* result, const bl_vector2i* vector, const BlMatrix* matrix)
+static void bl_vector2i_multiply_matrix4(BlVector2i* result, const BlVector2i* vector, const BlMatrix* matrix)
 {
     bl_vector3i source;
 
@@ -83,7 +83,7 @@ const char* bl_recti_to_string(const bl_recti * a)
     return buf;
 }
 
-void bl_recti_penetration(const bl_recti* a, bl_recti* b, struct bl_vector2i* separationAxis)
+void bl_recti_penetration(const bl_recti* a, bl_recti* b, struct BlVector2i* separationAxis)
 {
     int sumWidth = a->size.width + b->size.width;
     int sumHeight = a->size.height + b->size.height;
