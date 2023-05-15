@@ -5,9 +5,8 @@
 #ifndef BL_SIZE2I_H
 #define BL_SIZE2I_H
 
-typedef struct BlSize2i {
-    int width;
-    int height;
-} BlSize2i;
+#include <basal/vector2i.h>
+
+typedef BlVector2i BlSize2i;
 
 #endif

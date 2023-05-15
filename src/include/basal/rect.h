@@ -12,7 +12,7 @@
 
 typedef struct BlRect {
     BlVector2 position;
-    BlVector2 size;
+    BlSize2 size;
 } BlRect;
 
 BlCollision blRectCircleIntersect(BlRect rectangle, BlCircle circle);

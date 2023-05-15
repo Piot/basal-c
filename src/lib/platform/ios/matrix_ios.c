@@ -63,7 +63,7 @@ void blMatrixinit_frustum(BlMatrix* self, float left, float right, float bottom,
     self->matrix = GLKMatrix4MakeFrustum(left, right, bottom, top, near_z, far_z);
 }
 
-void blMatrixinit_ortho(BlMatrix* self, bl_rect* rect, float near_z, float far_z)
+void blMatrixinit_ortho(BlMatrix* self, BlRect* rect, float near_z, float far_z)
 {
     float half_width = rect->size.width / 2.0f;
     float half_height = rect->size.height / 2.0f;

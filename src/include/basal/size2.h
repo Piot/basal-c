@@ -6,10 +6,8 @@
 #define BL_SIZE2_H
 
 #include <stdbool.h>
+#include <basal/vector2.h>
 
-typedef struct BlSize2 {
-    float width;
-    float height;
-} BlSize2;
+typedef BlVector2 BlSize2;
 
 #endif

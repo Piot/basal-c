@@ -12,26 +12,26 @@
 
 struct BlMatrix;
 
-void bl_recti_multiply_matrix4(struct bl_recti* target, const struct bl_recti* source, const struct BlMatrix* matrix);
-void bl_recti_penetration(const bl_recti* a, bl_recti* b, struct BlVector2i * separationAxis);
-//void bl_recti_combine(bl_recti* result, const bl_recti* a, const bl_recti* b);
+void BlRecti_multiply_matrix4(struct BlRecti* target, const struct BlRecti* source, const struct BlMatrix* matrix);
+void BlRecti_penetration(const BlRecti* a, BlRecti* b, struct BlVector2i * separationAxis);
+//void BlRecti_combine(BlRecti* result, const BlRecti* a, const BlRecti* b);
 
-static inline bool bl_recti_is_intersect(const bl_recti* r1, const bl_recti* r2)
+static inline bool BlRecti_is_intersect(const BlRecti* r1, const BlRecti* r2)
 {
-    return !(r2->vector.x >= r1->vector.x + r1->size.width || r2->vector.x + r2->size.width <= r1->vector.x ||
-             r2->vector.y + r2->size.height <= r1->vector.y || r2->vector.y >= r1->vector.y + r1->size.height);
+    return !(r2->vector.x >= r1->vector.x + r1->size.x || r2->vector.x + r2->size.x <= r1->vector.x ||
+             r2->vector.y + r2->size.y <= r1->vector.y || r2->vector.y >= r1->vector.y + r1->size.y);
 }
 
-static inline void bl_recti_combine(bl_recti* result, const bl_recti* a, const bl_recti* b)
+static inline void BlRecti_combine(BlRecti* result, const BlRecti* a, const BlRecti* b)
 {
     result->vector.x = tc_min(a->vector.x, b->vector.x);
     result->vector.y = tc_min(a->vector.y, b->vector.y);
-    int maxX = tc_max(a->vector.x + a->size.width, b->vector.x + b->size.width);
-    int maxY = tc_max(a->vector.y + a->size.height, b->vector.y + b->size.height);
-    result->size.width = maxX - result->vector.x;
-    result->size.height = maxY - result->vector.y;
+    int maxX = tc_max(a->vector.x + a->size.x, b->vector.x + b->size.x);
+    int maxY = tc_max(a->vector.y + a->size.y, b->vector.y + b->size.y);
+    result->size.x = maxX - result->vector.x;
+    result->size.y = maxY - result->vector.y;
 }
 
-const char* bl_recti_to_string(const bl_recti * a);
+const char* BlRecti_to_string(const BlRecti * a);
 
 #endif

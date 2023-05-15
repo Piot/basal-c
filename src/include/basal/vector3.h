@@ -13,11 +13,11 @@ typedef struct BlVector3 {
     float z;
 } BlVector3;
 
-typedef struct bl_vector3i {
+typedef struct BlVector3i {
     int x;
     int y;
     int z;
-} bl_vector3i;
+} BlVector3i;
 
 BlVector3 blVector3Make(float x, float y, float z);
 

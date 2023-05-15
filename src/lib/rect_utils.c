@@ -20,7 +20,7 @@ static void blVector3multiply_matrix4(BlVector3* result, const BlVector3* vector
     result->z = v.z;
 }
 
-static void bl_vector3i_multiply_matrix4(bl_vector3i* result, const bl_vector3i* vector, const BlMatrix* matrix)
+static void BlVector3i_multiply_matrix4(BlVector3i* result, const BlVector3i* vector, const BlMatrix* matrix)
 {
     BlVector3 source;
 
@@ -37,56 +37,56 @@ static void bl_vector3i_multiply_matrix4(bl_vector3i* result, const bl_vector3i*
     result->z = result3.z;
 }
 
-static void bl_vector2i_multiply_matrix4(BlVector2i* result, const BlVector2i* vector, const BlMatrix* matrix)
+static void BlVector2i_multiply_matrix4(BlVector2i* result, const BlVector2i* vector, const BlMatrix* matrix)
 {
-    bl_vector3i source;
+    BlVector3i source;
 
     source.x = vector->x;
     source.y = vector->y;
     source.z = 0;
 
-    bl_vector3i result3;
+    BlVector3i result3;
 
-    bl_vector3i_multiply_matrix4(&result3, &source, matrix);
+    BlVector3i_multiply_matrix4(&result3, &source, matrix);
 
     result->x = result3.x;
     result->y = result3.y;
 }
 
-void bl_recti_multiply_matrix4(bl_recti* target, const bl_recti* source, const BlMatrix* matrix)
+void BlRecti_multiply_matrix4(BlRecti* target, const BlRecti* source, const BlMatrix* matrix)
 {
-    bl_vector2i_multiply_matrix4(&target->vector, &source->vector, matrix);
+    BlVector2i_multiply_matrix4(&target->vector, &source->vector, matrix);
 
-    target->size.width = (source->size.width * matrix->m[0]);
-    target->size.height = (source->size.height * matrix->m[5]);
+    target->size.x = (source->size.x * matrix->m[0]);
+    target->size.y = (source->size.y * matrix->m[5]);
 }
 
 /*
-static void bl_recti_flipx(bl_recti* target, const bl_recti* source)
+static void BlRecti_flipx(BlRecti* target, const BlRecti* source)
 {
-    target->vector.y = source->vector.y + source->size.height;
+    target->vector.y = source->vector.y + source->size.y;
 }
 
-bool bl_recti_is_intersect(const bl_recti* a, bl_recti* b)
+bool BlRecti_is_intersect(const BlRecti* a, BlRecti* b)
 {
-    return !(a->vector.x > b->vector.x + b->size.width || a->vector.x + a->size.width <= b->vector.x ||
-             a->vector.y > b->vector.y + b->size.height || a->vector.y + a->size.height <= b->vector.y);
+    return !(a->vector.x > b->vector.x + b->size.x || a->vector.x + a->size.x <= b->vector.x ||
+             a->vector.y > b->vector.y + b->size.y || a->vector.y + a->size.y <= b->vector.y);
 }
 */
 
-const char* bl_recti_to_string(const bl_recti * a)
+const char* BlRecti_to_string(const BlRecti * a)
 {
     static char buf[64];
 
-    tc_snprintf(buf, 64, "%d,%d (%dx%d)", a->vector.x, a->vector.y, a->size.width, a->size.height);
+    tc_snprintf(buf, 64, "%d,%d (%dx%d)", a->vector.x, a->vector.y, a->size.x, a->size.y);
 
     return buf;
 }
 
-void bl_recti_penetration(const bl_recti* a, bl_recti* b, struct BlVector2i* separationAxis)
+void BlRecti_penetration(const BlRecti* a, BlRecti* b, struct BlVector2i* separationAxis)
 {
-    int sumWidth = a->size.width + b->size.width;
-    int sumHeight = a->size.height + b->size.height;
+    int sumWidth = a->size.x + b->size.x;
+    int sumHeight = a->size.y + b->size.y;
 
     int deltaX = a->vector.x - b->vector.x;
     int absDeltaX = abs(deltaX);

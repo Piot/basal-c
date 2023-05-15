@@ -59,14 +59,14 @@ void blMatrixInitOrtho(BlMatrix* self, struct BlRect2* rect, float near_z, float
 
     tc_mem_clear_type_n(_result, 16);
 
-    _result[0] = 2.0f / rect->size.width;
-    _result[1 * 4 + 1] = 2.0f / rect->size.height;
+    _result[0] = 2.0f / rect->size.x;
+    _result[1 * 4 + 1] = 2.0f / rect->size.y;
     _result[2 * 4 + 2] = -2.0f / (far_z - near_z);
     _result[3 * 4 + 3] = 1.0f;
 
     float left = rect->vector.x;
-    float right = rect->vector.x + rect->size.width;
-    float top = rect->vector.y + rect->size.height;
+    float right = rect->vector.x + rect->size.x;
+    float top = rect->vector.y + rect->size.y;
     float bottom = rect->vector.y;
 
     float ral = right + left;
@@ -87,15 +87,15 @@ void blMatrixInitOrthoLh(BlMatrix* self, struct BlRect2* rect, float near_z, flo
 
     tc_mem_clear_type_n(_result, 16);
 
-    _result[0] = 2.0f / rect->size.width;
-    _result[1 * 4 + 1] = 2.0f / rect->size.height;
+    _result[0] = 2.0f / rect->size.x;
+    _result[1 * 4 + 1] = 2.0f / rect->size.y;
     _result[2 * 4 + 2] = 1.0f / (near_z - far_z);
     _result[3 * 4 + 3] = 1.0f;
 
     float left = rect->vector.x;
-    float right = rect->vector.x + rect->size.width;
+    float right = rect->vector.x + rect->size.x;
     float top = rect->vector.y;
-    float bottom = rect->vector.y + rect->size.height;
+    float bottom = rect->vector.y + rect->size.y;
 
     float ral = right + left;
     float rsl = right - left;
