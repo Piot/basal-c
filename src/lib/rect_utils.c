@@ -24,9 +24,9 @@ static void BlVector3i_multiply_matrix4(BlVector3i* result, const BlVector3i* ve
 {
     BlVector3 source;
 
-    source.x = vector->x;
-    source.y = vector->y;
-    source.z = vector->z;
+    source.x = (float) vector->x;
+    source.y = (float) vector->y;
+    source.z = (float) vector->z;
 
     BlVector3 result3;
 
@@ -57,12 +57,12 @@ void BlRecti_multiply_matrix4(BlRecti* target, const BlRecti* source, const BlMa
 {
     BlVector2i_multiply_matrix4(&target->vector, &source->vector, matrix);
 
-    target->size.x = (int) (source->size.x * matrix->m[0]);
-    target->size.y = (int) (source->size.y * matrix->m[5]);
+    target->size.x = (int) ((float)source->size.x * matrix->m[0]);
+    target->size.y = (int) ((float)source->size.y * matrix->m[5]);
 }
 
 /*
-static void BlRecti_flipx(BlRecti* target, const BlRecti* source)
+static void BlRecti_flipX(BlRecti* target, const BlRecti* source)
 {
     target->vector.y = source->vector.y + source->size.y;
 }

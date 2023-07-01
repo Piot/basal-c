@@ -6,10 +6,6 @@
 #include <basal/matrix.h>
 #include <basal/quaternion.h>
 #include <basal/rect2.h>
-#include <basal/vector3.h>
-#include <tiny-libc/tiny_libc.h>
-#include <stdbool.h>
-#include <clog/clog.h>
 
 void blMatrixInit(BlMatrix* self)
 {

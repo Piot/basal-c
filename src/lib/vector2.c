@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 #include <basal/math.h>
 #include <basal/vector2.h>
-#include <tiny-libc/tiny_libc.h>
 
 BlVector2 blVector2Make(float a, float b)
 {
