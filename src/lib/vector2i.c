@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 #include <basal/math.h>
 #include <basal/vector2i.h>
-#include <tiny-libc/tiny_libc.h>
 
 BlVector2i blVector2iAddScale(BlVector2i a, BlVector2i b, int scale)
 {
@@ -19,7 +18,7 @@ BlVector2i blVector2iAddScale(BlVector2i a, BlVector2i b, int scale)
 BlVector2i blVector2iReflect(BlVector2i incoming, BlVector2i normal)
 {
     int reflectDot = blVector2iDot(incoming, normal);
-    return blVector2iSub(incoming, blVector2iScale(normal, reflectDot * 2));
+    return blVector2iSub(incoming, blVector2iScale(normal, (float) reflectDot * 2));
 }
 
 int blVector2iDot(const BlVector2i a, const BlVector2i b)
@@ -39,8 +38,8 @@ BlVector2i blVector2iScale(BlVector2i p, float scalar)
 {
     BlVector2i result;
 
-    result.x = p.x * scalar;
-    result.y = p.y * scalar;
+    result.x = (int) ((float) p.x * scalar);
+    result.y = (int) ((float) p.y * scalar);
 
     return result;
 }
@@ -48,7 +47,7 @@ BlVector2i blVector2iScale(BlVector2i p, float scalar)
 
 float blVector2iLength(BlVector2i a)
 {
-    return blSqrt(a.x * a.x + a.y * a.y);
+    return blSqrt((float)(a.x * a.x + a.y * a.y));
 }
 
 int blVector2iSquareLength(BlVector2i a)
@@ -58,11 +57,11 @@ int blVector2iSquareLength(BlVector2i a)
 
 BlVector2i blVector2iUnit(BlVector2i a)
 {
-    int length = blVector2iLength(a);
+    float length = blVector2iLength(a);
     BlVector2i result;
 
-    result.x = a.x / length;
-    result.y = a.y / length;
+    result.x = (int) ((float)a.x / length);
+    result.y = (int) ((float)a.y / length);
 
     return result;
 }

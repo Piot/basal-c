@@ -2,7 +2,6 @@
  *  Copyright (c) Peter Bjorklund. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-#include "clog/clog.h"
 #include <basal/line_segment.h>
 
 BlVector2 blLineSegmentClosestPoint(const BlLineSegment segment, const BlVector2 query)

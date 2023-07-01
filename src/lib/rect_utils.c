@@ -24,17 +24,17 @@ static void BlVector3i_multiply_matrix4(BlVector3i* result, const BlVector3i* ve
 {
     BlVector3 source;
 
-    source.x = vector->x;
-    source.y = vector->y;
-    source.z = vector->z;
+    source.x = (float) vector->x;
+    source.y = (float) vector->y;
+    source.z = (float) vector->z;
 
     BlVector3 result3;
 
     blVector3multiply_matrix4(&result3, &source, matrix);
 
-    result->x = result3.x;
-    result->y = result3.y;
-    result->z = result3.z;
+    result->x = (int) result3.x;
+    result->y = (int) result3.y;
+    result->z = (int) result3.z;
 }
 
 static void BlVector2i_multiply_matrix4(BlVector2i* result, const BlVector2i* vector, const BlMatrix* matrix)
@@ -57,12 +57,12 @@ void BlRecti_multiply_matrix4(BlRecti* target, const BlRecti* source, const BlMa
 {
     BlVector2i_multiply_matrix4(&target->vector, &source->vector, matrix);
 
-    target->size.x = (source->size.x * matrix->m[0]);
-    target->size.y = (source->size.y * matrix->m[5]);
+    target->size.x = (int) ((float)source->size.x * matrix->m[0]);
+    target->size.y = (int) ((float)source->size.y * matrix->m[5]);
 }
 
 /*
-static void BlRecti_flipx(BlRecti* target, const BlRecti* source)
+static void BlRecti_flipX(BlRecti* target, const BlRecti* source)
 {
     target->vector.y = source->vector.y + source->size.y;
 }
@@ -74,7 +74,7 @@ bool BlRecti_is_intersect(const BlRecti* a, BlRecti* b)
 }
 */
 
-const char* BlRecti_to_string(const BlRecti * a)
+const char* BlRecti_to_string(const BlRecti* a)
 {
     static char buf[64];
 
@@ -95,9 +95,9 @@ void BlRecti_penetration(const BlRecti* a, BlRecti* b, struct BlVector2i* separa
 
     if (absDeltaX >= sumWidth || absDeltaY >= sumHeight) {
         CLOG_ERROR("shouldn't happen")
-        separationAxis->x = 0;
-        separationAxis->y = 0;
-        return;
+        // separationAxis->x = 0;
+        // separationAxis->y = 0;
+        // return;
     }
 
     int separationX = sumWidth - absDeltaX;
