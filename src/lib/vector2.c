@@ -81,7 +81,7 @@ float blVector2Dot(BlVector2 a, BlVector2 b)
 
 BlVector2 blVector2Reflect(BlVector2 incoming, BlVector2 normal)
 {
-    int reflectDot = blVector2Dot(incoming, normal);
+    float reflectDot = blVector2Dot(incoming, normal);
     return blVector2Sub(incoming, blVector2Scale(normal, reflectDot * 2));
 }
 

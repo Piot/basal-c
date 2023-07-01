@@ -39,8 +39,8 @@ BlVector2i blVector2iScale(BlVector2i p, float scalar)
 {
     BlVector2i result;
 
-    result.x = p.x * scalar;
-    result.y = p.y * scalar;
+    result.x = (int) (p.x * scalar);
+    result.y = (int) (p.y * scalar);
 
     return result;
 }
@@ -58,11 +58,11 @@ int blVector2iSquareLength(BlVector2i a)
 
 BlVector2i blVector2iUnit(BlVector2i a)
 {
-    int length = blVector2iLength(a);
+    float length = blVector2iLength(a);
     BlVector2i result;
 
-    result.x = a.x / length;
-    result.y = a.y / length;
+    result.x = (int) (a.x / length);
+    result.y = (int) (a.y / length);
 
     return result;
 }
